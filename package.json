@@ -1,6 +1,6 @@
 {
   "name": "gulp-remove-empty-lines-html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp plugin to remove empty lines from HTML files",
   "main": "index.js",
   "scripts": {

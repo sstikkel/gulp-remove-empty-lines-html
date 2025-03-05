@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const Vinyl = require('vinyl');
 const { expect } = require('chai');
 const removeEmptyLinesHtml = require('./index'); // Adjust path to your plugin file
@@ -7,21 +5,23 @@ const removeEmptyLinesHtml = require('./index'); // Adjust path to your plugin f
 describe('gulp-remove-empty-lines-html', () => {
   it('should remove empty lines from HTML file', (done) => {
     // Create a test HTML file with empty lines
-    const testHtml = `<!DOCTYPE html>
-      <html>
-          
-        <head>
-          <title>Test Page</title>
-            
-        </head>
+    const testHtml = 
+`
+<!DOCTYPE html>
+<html>
 
-        <body>
+  <head>
+    <title>Test Page</title>
+      
+  </head>
 
-          <h1>Hello World</h1>
+  <body>
 
-        </body>
-      </html>
-    `;
+    <h1>Hello World</h1>
+
+  </body>
+</html>
+`;
 
     // Create a Vinyl file object
     const fakeFile = new Vinyl({
@@ -39,12 +39,12 @@ describe('gulp-remove-empty-lines-html', () => {
       expect(processedContent).to.equal(
 `<!DOCTYPE html>
 <html>
-<head>
-<title>Test Page</title>
-</head>
-<body>
-<h1>Hello World</h1>
-</body>
+  <head>
+    <title>Test Page</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+  </body>
 </html>`);
       
       done();
@@ -57,17 +57,16 @@ describe('gulp-remove-empty-lines-html', () => {
 
   it('should remove HTML comments when option is set', (done) => {
     // Create a test HTML file with comments
-    const testHtml = `
-      <!DOCTYPE html>
-      <!-- This is a comment -->
-      <html>
-          <!-- Another comment -->
-          <body>
-              <h1>Hello World</h1>
-              <!-- One more comment -->
-          </body>
-      </html>
-      `;
+    const testHtml = 
+`<!DOCTYPE html>
+<!-- This is a comment -->
+<html>
+  <!-- Another comment -->
+  <body>
+    <h1>Hello World</h1>
+    <!-- One more comment -->
+  </body>
+</html>`;
 
     // Create a Vinyl file object
     const fakeFile = new Vinyl({
@@ -85,9 +84,9 @@ describe('gulp-remove-empty-lines-html', () => {
       expect(processedContent).to.equal(
 `<!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-</body>
+  <body>
+    <h1>Hello World</h1>
+  </body>
 </html>`);
       done();
     });

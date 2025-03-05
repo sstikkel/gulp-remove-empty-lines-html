@@ -19,10 +19,10 @@ function clean(fileContent, options) {
     fileContent = fileContent.replace(/\s\s+/g, ' ');
   }
 
-  // return fileContent.replace(/^\s*[\r\n]/gm, '');
+  // Return fileContent.replace(/^\s*[\r\n]/gm, '');
   return fileContent
     .split('\n')
-    .map(line => line.trim())
+    .map(line => (line.trim() === '' ? '' : line))
     .filter(line => line !== '')
     .join('\n');
 }
