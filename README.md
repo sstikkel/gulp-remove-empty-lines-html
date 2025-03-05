@@ -11,7 +11,7 @@ npm install gulp-remove-empty-lines-html --save-dev
 ## Usage
 
 ```javascript
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const removeEmptyLines = require('gulp-remove-empty-lines-html');
 
 gulp.task('clean-html', () => {
