@@ -21,6 +21,18 @@ gulp.task('clean-html', () => {
 });
 ```
 
+## Options
+
+removeComments
+Default: false
+Type: boolean
+Description: Remove all the comments from html files.
+
+removeSpaces
+Default: false
+Type: boolean
+Description: Remove all duplicate spaces from any file.
+
 ## Example
 
 Input:
