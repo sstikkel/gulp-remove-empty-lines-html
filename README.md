@@ -18,11 +18,11 @@ npm install gulp-remove-empty-lines-html --save-dev
 
 ```javascript
 const { src, dest } = require('gulp');
-const removeEmptyLines = require('gulp-remove-empty-lines-html');
+const { removeEmptyLinesHtml } = require('gulp-remove-empty-lines-html');
 
 gulp.task('clean-html', () => {
   return gulp.src('./src/**/*.html')
-    .pipe(removeEmptyLines())
+    .pipe(removeEmptyLinesHtml())
     .pipe(gulp.dest('./dist'));
 });
 ```
@@ -31,11 +31,11 @@ gulp.task('clean-html', () => {
 
 ```javascript
 import { src, dest } from 'gulp';
-import removeEmptyLines from 'gulp-remove-empty-lines-html';
+import removeEmptyLinesHtml from 'gulp-remove-empty-lines-html';
 
 export function cleanHtml() {
   return src('./src/**/*.html')
-    .pipe(removeEmptyLines())
+    .pipe(removeEmptyLinesHtml())
     .pipe(dest('./dist'));
 }
 ```
