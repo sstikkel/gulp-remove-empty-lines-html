@@ -1,6 +1,12 @@
 # gulp-remove-empty-lines-html
 
-A Gulp plugin that removes empty lines and lines containing only whitespace from HTML files.
+A Gulp plugin that removes empty lines and lines containing only whitespace from HTML files only.
+
+## Module Support
+
+This package supports both CommonJS (`require`) and ESM (`import`) usage. Node.js >=22 is required.
+
+### CommonJS Example
 
 ## Installation
 
@@ -21,17 +27,29 @@ gulp.task('clean-html', () => {
 });
 ```
 
+### ESM Example
+
+```javascript
+import { src, dest } from 'gulp';
+import removeEmptyLines from 'gulp-remove-empty-lines-html';
+
+export function cleanHtml() {
+  return src('./src/**/*.html')
+    .pipe(removeEmptyLines())
+    .pipe(dest('./dist'));
+}
+```
+
 ## Options
 
 ***removeComments***  
-Default: false  
+Default: true   
 Type: boolean  
-Description: Remove all the comments from html files.  
-  
-***removeSpaces***  
-Default: false  
-Type: boolean  
-Description: Remove all duplicate spaces from any file.  
+Description: Remove all the comments from html files.    
+
+## Requirements
+
+- Node.js >=22
 
 ## Example
 

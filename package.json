@@ -1,11 +1,27 @@
 {
   "name": "gulp-remove-empty-lines-html",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Gulp plugin to remove empty lines from HTML files",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "test": "mocha test.js",
-    "prepublishOnly": "npm test"
+    "build": "node build.js",
+    "test": "npm run test:esm && npm run test:cjs",
+    "test:esm": "node test/test-esm.js",
+    "test:cjs": "node test/test-cjs.cjs",
+    "test:gulp": "cd test && gulp",
+    "test:local": "npm run build && npm run test",
+    "prepublishOnly": "npm run build && npm run test"
   },
   "keywords": [
     "gulp",
@@ -27,10 +43,8 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "chai": "^5.2.0",
-    "gulp": "5.0.0",
-    "mocha": "^10.8.2",
-    "vinyl": "^3.0.0"
+    "esbuild": "^0.25.8",
+    "gulp": "^5.0.1"
   },
   "engines": {
     "node": ">=22.0.0"
