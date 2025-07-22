@@ -58,3 +58,4 @@ function removeEmptyLinesHtml(options) {
 }
 
 export default removeEmptyLinesHtml;
+export { removeEmptyLinesHtml };

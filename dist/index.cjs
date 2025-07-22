@@ -29,7 +29,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.js
 var index_exports = {};
 __export(index_exports, {
-  default: () => index_default
+  default: () => index_default,
+  removeEmptyLinesHtml: () => removeEmptyLinesHtml
 });
 module.exports = __toCommonJS(index_exports);
 var import_through2 = __toESM(require("through2"), 1);
@@ -73,3 +74,7 @@ function removeEmptyLinesHtml(options) {
   });
 }
 var index_default = removeEmptyLinesHtml;
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  removeEmptyLinesHtml
+});

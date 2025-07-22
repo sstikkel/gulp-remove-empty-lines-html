@@ -41,5 +41,6 @@ function removeEmptyLinesHtml(options) {
 }
 var index_default = removeEmptyLinesHtml;
 export {
-  index_default as default
+  index_default as default,
+  removeEmptyLinesHtml
 };
