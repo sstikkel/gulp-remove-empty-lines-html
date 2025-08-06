@@ -1,12 +1,10 @@
 # gulp-remove-empty-lines-html
 
-A Gulp plugin that removes empty lines and lines containing only whitespace from HTML files only.
+A Gulp plugin that removes empty lines, HTML comments, and formats HTML with proper indentation. It also removes trailing spaces after closing tags.
 
 ## Module Support
 
 This package supports both CommonJS (`require`) and ESM (`import`) usage. Node.js >=22 is required.
-
-### CommonJS Example
 
 ## Installation
 
@@ -15,6 +13,8 @@ npm install gulp-remove-empty-lines-html --save-dev
 ```
 
 ## Usage
+
+### CommonJS Example
 
 ```javascript
 const { src, dest } = require('gulp');
@@ -45,7 +45,15 @@ export function cleanHtml() {
 ***removeComments***  
 Default: true   
 Type: boolean  
-Description: Remove all the comments from html files.    
+Description: Remove all HTML comments from files.    
+
+## Features
+
+- Removes empty lines and lines containing only whitespace
+- Removes HTML comments (when `removeComments` is true)
+- Removes trailing spaces after closing tags
+- Formats HTML with proper indentation (2 spaces)
+- Only processes HTML files (`.html` extension)
 
 ## Requirements
 
@@ -55,16 +63,23 @@ Description: Remove all the comments from html files.
 
 Input:
 ```html
+<!DOCTYPE html>
 <html>
 
   <head>
-    
+    <meta charset="UTF-8">
+    <title>Test</title>
+  <meta name="description" content="Page description">
   </head>
 
   <body>
-    
-    <h1>Hello</h1>
-
+    <!-- This is a comment -->
+    <h1>
+      Hello World
+    </h1>
+    <p>
+      This is a test
+    </p>
   </body>
 
 </html>
@@ -72,11 +87,20 @@ Input:
 
 Output:
 ```html
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <meta name="description" content="Page description">
   </head>
   <body>
-    <h1>Hello</h1>
+    <h1>
+      Hello World
+    </h1>
+    <p>
+      This is a test
+    </p>
   </body>
 </html>
 ```

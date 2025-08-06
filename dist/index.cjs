@@ -45,7 +45,40 @@ function clean(fileContent, options) {
     fileContent = fileContent.replace(/<!--[\s\S]*?-->/gm, "");
   }
   fileContent = fileContent.replace(/> +/g, ">");
-  return fileContent.split("\n").map((line) => line.trim() === "" ? "" : line).filter((line) => line !== "").join("\n");
+  const lines = fileContent.split("\n").map((line) => line.trim()).filter((line) => line !== "");
+  const formattedLines = [];
+  let indentLevel = 0;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.startsWith("<!DOCTYPE")) {
+      formattedLines.push(line);
+      continue;
+    }
+    if (line.startsWith("</")) {
+      indentLevel = Math.max(0, indentLevel - 1);
+      const indent2 = "  ".repeat(indentLevel);
+      formattedLines.push(indent2 + line);
+      continue;
+    }
+    if (line.startsWith("<") && !line.startsWith("<!")) {
+      const indent2 = "  ".repeat(indentLevel);
+      if (line.endsWith("/>") || line.includes(">") && !line.includes("</")) {
+        formattedLines.push(indent2 + line);
+      } else {
+        formattedLines.push(indent2 + line);
+        indentLevel++;
+        if (i + 1 < lines.length && !lines[i + 1].startsWith("<")) {
+          const contentIndent = "  ".repeat(indentLevel);
+          formattedLines.push(contentIndent + lines[i + 1]);
+          i++;
+        }
+      }
+      continue;
+    }
+    const indent = "  ".repeat(indentLevel);
+    formattedLines.push(indent + line);
+  }
+  return formattedLines.join("\n");
 }
 function removeEmptyLinesHtml(options) {
   options = options || {};
