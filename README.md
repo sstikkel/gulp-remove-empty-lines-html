@@ -1,6 +1,6 @@
 # gulp-remove-empty-lines-html
 
-A Gulp plugin that removes empty lines, HTML comments, and formats HTML with proper indentation. It also removes trailing spaces after closing tags.
+A Gulp plugin that removes empty lines from HTML files and optionally removes HTML comments. It preserves the original formatting of the HTML content.
 
 ## Module Support
 
@@ -43,16 +43,15 @@ export function cleanHtml() {
 ## Options
 
 ***removeComments***  
-Default: true   
+Default: false   
 Type: boolean  
 Description: Remove all HTML comments from files.    
 
 ## Features
 
 - Removes empty lines and lines containing only whitespace
-- Removes HTML comments (when `removeComments` is true)
-- Removes trailing spaces after closing tags
-- Formats HTML with proper indentation (2 spaces)
+- Optionally removes HTML comments (when `removeComments` is true)
+- Preserves original HTML formatting and indentation
 - Only processes HTML files (`.html` extension)
 
 ## Requirements
@@ -69,23 +68,21 @@ Input:
   <head>
     <meta charset="UTF-8">
     <title>Test</title>
-  <meta name="description" content="Page description">
+    <meta name="description" content="Page description">
   </head>
 
   <body>
     <!-- This is a comment -->
-    <h1>
-      Hello World
-    </h1>
-    <p>
-      This is a test
-    </p>
+    <h1>Hello World</h1>
+      <p>
+        This is a test
+      </p>
   </body>
 
 </html>
 ```
 
-Output:
+Output (default):
 ```html
 <!DOCTYPE html>
 <html>
@@ -95,12 +92,29 @@ Output:
     <meta name="description" content="Page description">
   </head>
   <body>
-    <h1>
-      Hello World
-    </h1>
-    <p>
-      This is a test
-    </p>
+    <!-- This is a comment -->
+    <h1>Hello World</h1>
+      <p>
+        This is a test
+      </p>
+  </body>
+</html>
+```
+
+Output (with `removeComments: true`):
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <meta name="description" content="Page description">
+  </head>
+  <body>
+    <h1>Hello World</h1>
+      <p>
+        This is a test
+      </p>
   </body>
 </html>
 ```
